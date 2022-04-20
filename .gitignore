@@ -1,0 +1,8 @@
+# virtual environment
+venv/*
+
+# secrets
+.env
+# vscode
+.history/*
+vscode/*
