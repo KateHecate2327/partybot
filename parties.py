@@ -17,7 +17,7 @@ class Party:
         self.participants.append(participant)
     
     def mention(self):
-        mention = "Не забудьте позвонить в охране"
+        mention = "Не забудьте позвонить в охрану"
         for p in self.participants:
             mention += f", @{p}"
         return mention
@@ -34,6 +34,9 @@ class Parties:
         return self.last_party
         
     def new_party(self, chat_id):
+        if not datetime.datetime.utcnow().weekday() in [4, 5, 6]:
+            print("Неподходящий денб")
+            return None
         new_party = Party(chat_id)
         self.last_party = new_party
         return new_party

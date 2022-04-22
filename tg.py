@@ -25,7 +25,7 @@ try:
 except:
     pass
 
-def echo(update: Update, context: CallbackContext):
+def handle(update: Update, context: CallbackContext):
     response = get_answer(update.message.text)
     if not response:
         return
@@ -37,9 +37,9 @@ def echo(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=chat_id, text=text)
         return
 
-    party = parties.get_party()
+    party = parties.get_party() or parties.new_party(chat_id=chat_id)
     if not party:
-        party = parties.new_party(chat_id=chat_id)
+        return
 
     party.add_participant(update.message.from_user.username)
 
@@ -47,7 +47,7 @@ def echo(update: Update, context: CallbackContext):
     db["parties"] = parties
     db.close()
 
-echo_handler = MessageHandler(Filters.text, echo)
+echo_handler = MessageHandler(Filters.text, handle)
 dispatcher.add_handler(echo_handler)
 
 
