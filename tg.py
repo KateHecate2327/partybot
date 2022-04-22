@@ -1,10 +1,17 @@
+import os
 from telegram import Update
 from telegram.ext import CallbackContext, Filters, MessageHandler, Updater
 
 from PartyBot import get_answer
 
+from dotenv import load_dotenv
+
+# Читаем конфигурацию
+load_dotenv()
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+
 updater = Updater(
-    token="5184676864:AAErGdR502LzUIuu9VPQcDC3iUx9OIfzydw", use_context=True
+    token=BOT_TOKEN, use_context=True
 )
 dispatcher = updater.dispatcher
 
