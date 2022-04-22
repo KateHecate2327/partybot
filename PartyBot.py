@@ -172,4 +172,22 @@ while question not in ['']:
 
 
 
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters
 
+# Функция будет вызвана при получении сообщения
+def botMessage(update: Update, context: CallbackContext):
+    answer = bot(update.message.text) # # Готовим ответ
+    print(update.message.text, answer, get_intent(update.message.text))
+    update.message.reply_text(answer) # Отправляем ответ обратно пользователю
+
+    
+#def main():
+    
+updater = Updater("5200811696:AAFRC17wCt9rJDepba4hGMOWkY8RLGGQoX0", use_context=True)
+
+# Конфигурацию, при получении любого текстового сообщения будет вызвана функция botMessage
+updater.dispatcher.add_handler(MessageHandler(Filters.text, botMessage))
+
+updater.start_polling()
+updater.idle()
