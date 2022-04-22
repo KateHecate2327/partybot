@@ -12,6 +12,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC, LinearSVC
 
+PARTY_INTENT = "go_party"
+
 BOT_CONFIG = {
     "intents": {
         "hello": {
@@ -32,7 +34,7 @@ BOT_CONFIG = {
             ],
             "responses": ["Еще увидимся", "Ты чё, пёс!", "Ну и лох", "А жаль:("],
         },
-        "go_party": {
+        PARTY_INTENT: {
             "examples": [
                 "Кто сегодня в офис",
                 "захвати",
