@@ -62,7 +62,7 @@ def start_printing():
         ufa_21_00 = 16
         ufa_22_00 = 17
 
-        if now.hour < 11 or now.hour > 12:
+        if now.hour < ufa_21_00 or now.hour > ufa_22_00:
             print("еще рано")
             time.sleep(60*60)
             continue
@@ -78,7 +78,7 @@ def start_printing():
                 time.sleep(60*60)
                 continue
 
-        time.sleep(5)
+        time.sleep(10*60)
 
 p1 = Process(target=start_polling).start()
 p2 = Process(target=start_printing).start()
