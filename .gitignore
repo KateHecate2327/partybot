@@ -1,0 +1,6 @@
+venv/*
+.history/*
+.vscode/*
+.env
+
+*.pyc
